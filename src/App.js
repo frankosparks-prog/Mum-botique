@@ -11,6 +11,10 @@ import Products from "./components/Products";
 import Categories from "./components/Categories";
 import Contact from "./components/Contact";
 import NotFound from "./components/NotFound";
+import Trousers from "./components/Trousers";
+import Dresses from "./components/Dresses";
+import Shoes from "./components/Shoes";
+import Tops from "./components/Tops";
 
 const App = () => {
   return (
@@ -24,6 +28,10 @@ const App = () => {
           <Route path="/about" element={<About />} />
           <Route path="/products" element={<Products />} />
           <Route path="/categories" element={<Categories />} />
+          <Route path="/categories/trousers" element={<Trousers />} />
+          <Route path="/categories/dresses" element={<Dresses />} />
+          <Route path="/categories/shoes" element={<Shoes />} />
+          <Route path="/categories/tops" element={<Tops />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="*" element={<NotFound />} />
         </Routes>

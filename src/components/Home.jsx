@@ -19,7 +19,7 @@ function Home() {
       {/* Hero Section */}
       <section className="flex flex-col items-center justify-center px-4 py-16 md:py-32 text-center">
         <h1 className="text-4xl md:text-5xl font-bold text-pink-600 mb-4">
-          Welcome to Beauty Boutique ✨
+          Welcome to MC Boutique ✨
         </h1>
         <p className="text-xl md:text-2xl text-gray-700 mb-8">
           Explore a collection of classic, elegant, and timeless beauty products

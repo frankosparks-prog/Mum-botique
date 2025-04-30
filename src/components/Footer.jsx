@@ -9,9 +9,9 @@ function Footer() {
         {/* Footer Top Section */}
         <div className="flex flex-col md:flex-row justify-between mb-12">
           <div className="mb-6 md:mb-0 max-w-lg">
-            <h2 className="text-4xl font-bold mb-4 text-gray-100">Beauty Boutique</h2>
+            <h2 className="text-4xl font-bold mb-4 text-gray-100">MC Boutique</h2>
             <p className="text-lg text-gray-200">
-              Discover timeless elegance with our premium beauty products.
+              Discover timeless elegance with our premium MC products.
             </p>
           </div>
           
@@ -40,7 +40,7 @@ function Footer() {
             <div className="mb-6 md:mb-0">
               <h3 className="font-semibold text-xl mb-4">Contact Us</h3>
               <ul>
-                <li className="text-gray-900 font-semibold">Email: contact@beautyboutique.com</li>
+                <li className="text-gray-900 font-semibold">Email: contact@MCboutique.com</li>
                 <li className="text-gray-900 font-semibold">Phone: (123) 456-7890</li>
               </ul>
             </div>
@@ -49,7 +49,7 @@ function Footer() {
 
         {/* Footer Bottom Section */}
         <div className="flex flex-col md:flex-row items-center justify-between border-t border-gray-400 pt-8">
-          <p className="text-sm text-gray-200">© 2025 Beauty Boutique. All Rights Reserved.</p>
+          <p className="text-sm text-gray-200">© 2025 MC Boutique. All Rights Reserved.</p>
           <div className="flex space-x-8 mt-6 md:mt-0">
             <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
               <FaFacebookF className="text-3xl text-gray-900 font-semibold hover:text-pink-200 transition-all" />
