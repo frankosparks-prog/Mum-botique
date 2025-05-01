@@ -88,7 +88,7 @@ const Navbar = () => {
         </div>
 
         {/* Sidebar Links */}
-        <nav className="flex flex-col px-6 py-4 space-y-4">
+        <nav className="flex flex-col px-6 py-4 space-y-10">
           {links.map((link, idx) => (
             <Link
               key={idx}
