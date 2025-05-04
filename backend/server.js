@@ -41,7 +41,9 @@ app.use(cors({
 }));
 
 // Middleware
-app.use(express.json());
+app.use(express.json({ limit: "10mb" }));
+app.use(express.urlencoded({ extended: true, limit: "10mb" }));
+
 // app.use(mongoSanitize());
 app.use(helmet());
 app.use(compression());
@@ -53,6 +55,11 @@ app.use(rateLimit({
   max: 100, // Limit each IP to 100 requests per windowMs
   message: "Too many requests from this IP, please try again later.",
 }));
+
+app.use((err, req, res, next) => {
+  console.error(err.stack); // Log full error
+  res.status(500).send({ success: false, message: err.message });
+});
 
 // Routes
 app.use("/api/admin", AdminAuth); // Admin Auth routes

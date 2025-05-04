@@ -1,7 +1,6 @@
 // src/App.js
-
 import React from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import ScrollToTop from "./components/scrollTop";
 
@@ -16,6 +15,14 @@ import Dresses from "./components/Dresses";
 import Shoes from "./components/Shoes";
 import Tops from "./components/Tops";
 
+// Admin components
+import UsersDetails from "./components/Admin/UserDetails";
+import ViewPayment from "./components/Admin/ViewPayment";
+import AdminDashboard from "./components/Admin/AdminDashboard";
+import AdminLogin from "./components/Admin/AdminLogin";
+import ProtectedRoute from "./components/Admin/ProtectedRoute";
+import ManageProducts from "./components/Admin/ManageProducts";
+
 const App = () => {
   return (
     <div className="font-sans">
@@ -24,7 +31,8 @@ const App = () => {
 
       <main className="pt-24">
         <Routes>
-          <Route exact path="/" element={<Home />} />
+          {/* Public routes */}
+          <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/products" element={<Products />} />
           <Route path="/categories" element={<Categories />} />
@@ -34,6 +42,22 @@ const App = () => {
           <Route path="/categories/tops" element={<Tops />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="*" element={<NotFound />} />
+
+          {/* Admin routes */}
+          <Route path="/mc/admin" element={<AdminLogin />} />
+          <Route
+            path="/mc/admin/dashboard/*"
+            element={
+              <ProtectedRoute>
+                <AdminDashboard />
+              </ProtectedRoute>
+            }
+          >
+            <Route index element={<Navigate to="visitors" replace />} />
+            <Route path="visitors" element={<UsersDetails />} />
+            <Route path="payments" element={<ViewPayment />} />
+            <Route path="products" element={<ManageProducts />} />
+          </Route>
         </Routes>
       </main>
     </div>
