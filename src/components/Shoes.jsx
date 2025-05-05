@@ -96,6 +96,7 @@ import React, { useEffect, useState } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import Footer from "./Footer";
+import { Link } from "react-router-dom";
 import CircularProgress from "@mui/material/CircularProgress";
 
 function Shoes() {
@@ -177,9 +178,11 @@ function Shoes() {
                   <p className="text-green-500 text-md font-medium mt-2">
                     ksh{shoe.price}
                   </p>
+                  <Link to={`/product/${shoe._id}`}>
                   <button className="mt-4 bg-pink-500 hover:bg-pink-600 text-white px-5 py-2 rounded-full font-medium transition">
                     View Details
                   </button>
+                  </Link>
                 </div>
               </div>
             ))}

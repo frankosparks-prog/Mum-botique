@@ -160,7 +160,9 @@ function Home() {
     // Fetch featured products from backend
     const fetchFeaturedProducts = async () => {
       try {
-        const response = await fetch("http://localhost:5000/api/products/featured");
+        const response = await fetch(
+          "http://localhost:5000/api/products/featured"
+        );
         const data = await response.json();
         if (data.success) {
           setFeaturedProducts(data.products);
@@ -185,7 +187,8 @@ function Home() {
             Welcome to MC Boutique ✨
           </h1>
           <p className="text-xl md:text-2xl text-gray-700 mb-8">
-            Explore a collection of classic, elegant, and timeless beauty products
+            Explore a collection of classic, elegant, and timeless beauty
+            products
           </p>
           <div className="flex space-x-6">
             <Link
@@ -202,7 +205,6 @@ function Home() {
             </Link>
           </div>
         </section>
-
         {/* Featured Products Section */}
         <section className="w-full px-6 py-16 bg-white">
           <div className="max-w-7xl mx-auto text-center">
@@ -211,9 +213,8 @@ function Home() {
             </h2>
             {featuredProducts.length === 0 ? (
               <p className="text-gray-600 bg-pink-100 border border-pink-300 rounded-lg px-6 py-4 text-lg font-medium shadow-sm inline-block">
-              No featured products available.
-            </p>
-            
+                No featured products available.
+              </p>
             ) : (
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
                 {featuredProducts.map((product) => (
@@ -222,16 +223,23 @@ function Home() {
                     className="bg-white rounded-lg shadow-lg overflow-hidden"
                     data-aos="fade-up"
                   >
-                    <img
-                      src={product.images?.[0] || "https://via.placeholder.com/400x250"}
-                      alt={product.name}
-                      className="w-full h-56 object-cover"
-                    />
+                    <Link to={`/product/${product._id}`}>
+                      <img
+                        src={
+                          product.images?.[0] ||
+                          "https://via.placeholder.com/400x250"
+                        }
+                        alt={product.name}
+                        className="w-full h-56 object-cover hover:opacity-90 transition"
+                      />
+                    </Link>
                     <div className="p-4">
                       <h3 className="text-xl font-semibold text-gray-800">
                         {product.name}
                       </h3>
-                      <p className="text-pink-600 font-semibold mt-2">ksh{product.price.toFixed(2)}</p>
+                      <p className="text-pink-600 font-semibold mt-2">
+                        Ksh {product.price.toFixed(2)}
+                      </p>
                       <Link
                         to={`/product/${product._id}`}
                         className="mt-4 inline-block text-pink-600 hover:text-pink-700 transition-all"

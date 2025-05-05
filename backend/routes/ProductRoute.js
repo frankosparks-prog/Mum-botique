@@ -146,6 +146,7 @@ router.get("/", async (req, res) => {
   }
 });
 
+
 // ✅ Get products by category
 router.get("/category/:category", async (req, res) => {
   try {
@@ -173,6 +174,19 @@ router.get("/elegance", async (req, res) => {
     res.json({ success: true, products });
   } catch (err) {
     res.status(400).json({ success: false, message: err.message });
+  }
+});
+
+// ✅ Get a single product by ID
+router.get("/:id", async (req, res) => {
+  try {
+    const product = await Product.findById(req.params.id);
+    if (!product) {
+      return res.status(404).json({ success: false, message: "Product not found" });
+    }
+    res.json({ success: true, product });
+  } catch (err) {
+    res.status(500).json({ success: false, message: "Server error: " + err.message });
   }
 });
 

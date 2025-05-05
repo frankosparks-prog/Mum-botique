@@ -13,6 +13,7 @@ const paymentSuccess = require("./routes/payment-success.js");
 const AdminAuth = require("./routes/AdminAuth.js");
 const Uploads = require("./routes/UploadRoute.js");
 const Products = require("./routes/ProductRoute.js");
+const mail = require("./routes/Email.js");
 
 const errorHandler = require("./middleware/Errorhandler.js");
 dotenv.config();
@@ -24,6 +25,8 @@ app.set('trust proxy', 1);
 // CORS Configuration
 const allowedOrigins = [
   "http://localhost:3000", // For development
+  "http://localhost:3001",
+  "http://192.168.103.20:3000", // For local network access
 ];
 
 app.use(cors({
@@ -67,6 +70,7 @@ app.use("/api/visitors", visitor); // Only authenticated users can track visitor
 app.use("/api/payments", paymentSuccess); // Payment routes
 app.use("/api/upload", Uploads); // Image upload route
 app.use("/api/products", Products); // Product routes
+app.use('/api/contact', mail); // Contact form route
 
 // Graceful Shutdown
 process.on("SIGINT", () => {

@@ -22,6 +22,7 @@ import AdminDashboard from "./components/Admin/AdminDashboard";
 import AdminLogin from "./components/Admin/AdminLogin";
 import ProtectedRoute from "./components/Admin/ProtectedRoute";
 import ManageProducts from "./components/Admin/ManageProducts";
+import ProductDetailPage from "./components/ProductDetailPage";
 
 const App = () => {
   return (
@@ -35,6 +36,7 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/products" element={<Products />} />
+          <Route path="/product/:productId" element={<ProductDetailPage />} />
           <Route path="/categories" element={<Categories />} />
           <Route path="/categories/trousers" element={<Trousers />} />
           <Route path="/categories/dresses" element={<Dresses />} />

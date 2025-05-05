@@ -96,6 +96,7 @@ import React, { useEffect, useState } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import Footer from "./Footer";
+import { Link } from "react-router-dom";
 import CircularProgress from "@mui/material/CircularProgress";
 
 function Dresses() {
@@ -108,7 +109,9 @@ function Dresses() {
     // Fetch dresses by category
     const fetchDresses = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/products/category/Dresses");
+        const res = await fetch(
+          "http://localhost:5000/api/products/category/Dresses"
+        );
         const data = await res.json();
         if (data.success) {
           setDresses(data.products);
@@ -151,7 +154,9 @@ function Dresses() {
             <CircularProgress size={40} sx={{ color: "#ec4899" }} />
           </div>
         ) : dresses.length === 0 ? (
-          <p className="text-center text-gray-600 bg-pink-100 px-6 py-4 rounded-lg border border-pink-300">No dresses found.</p>
+          <p className="text-center text-gray-600 bg-pink-100 px-6 py-4 rounded-lg border border-pink-300">
+            No dresses found.
+          </p>
         ) : (
           <div className="grid gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
             {dresses.map((dress) => (
@@ -170,9 +175,11 @@ function Dresses() {
                   <p className="text-green-500 text-md font-medium mt-2">
                     ksh{dress.price}
                   </p>
-                  <button className="mt-4 bg-pink-500 hover:bg-pink-600 text-white px-5 py-2 rounded-full font-medium transition">
-                    View Details
-                  </button>
+                  <Link to={`/product/${dress._id}`}>
+                    <button className="mt-4 bg-pink-500 hover:bg-pink-600 text-white px-5 py-2 rounded-full font-medium transition">
+                      View Details
+                    </button>
+                  </Link>
                 </div>
               </div>
             ))}
