@@ -42,7 +42,9 @@ const ProductDetailPage = () => {
 
   if (!product) {
     return (
-      <CircularProgress size={40} style={{ color: "#ec4899" }} />
+      <div className="flex justify-center mt-20">
+        <CircularProgress size={40} sx={{ color: "#ec4899" }} />
+      </div>
     );
   }
 
@@ -127,7 +129,7 @@ const ProductDetailPage = () => {
                     {rel.name}
                   </h3>
                   <p className="text-green-600 font-medium">Ksh {rel.price}</p>
-                
+
                   <Link
                     to={`/product/${rel._id}`}
                     className="mt-4 inline-block text-pink-600 hover:text-pink-700 transition-all font-semibold"

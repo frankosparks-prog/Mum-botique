@@ -104,11 +104,12 @@
 
 // export default Products;
 
-import React, { useEffect, useState } from 'react';
-import AOS from 'aos';
-import 'aos/dist/aos.css';
-import Footer from './Footer';
-import CircularProgress from '@mui/material/CircularProgress'; // ✅ Import Spinner
+import React, { useEffect, useState } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import Footer from "./Footer";
+import { Link } from "react-router-dom";
+import CircularProgress from "@mui/material/CircularProgress"; // ✅ Import Spinner
 
 function Products() {
   const [elegantProducts, setElegantProducts] = useState([]);
@@ -120,7 +121,9 @@ function Products() {
 
     const fetchElegantProducts = async () => {
       try {
-        const response = await fetch('http://localhost:5000/api/products/elegance');
+        const response = await fetch(
+          "http://localhost:5000/api/products/elegance"
+        );
         const result = await response.json();
 
         if (!result.success) {
@@ -168,11 +171,15 @@ function Products() {
 
         {loading ? (
           <div className="flex justify-center items-center h-40">
-            <CircularProgress size={40} style={{ color: '#ec4899' }} /> {/* Pink Spinner */}
+            <CircularProgress size={40} style={{ color: "#ec4899" }} />{" "}
+            {/* Pink Spinner */}
           </div>
         ) : error ? (
           // <p className="text-center text-red-500 text-lg">{error}</p>
-          <p className="text-center text-red-500 text-lg font-semibold"> Check your network connection and try again!!</p>
+          <p className="text-center text-red-500 text-lg font-semibold">
+            {" "}
+            Check your network connection and try again!!
+          </p>
         ) : elegantProducts.length === 0 ? (
           <p className="text-center text-gray-600 bg-pink-100 px-6 py-4 rounded-lg border border-pink-300">
             No elegant products available.
@@ -200,19 +207,21 @@ function Products() {
                   <p className="text-green-500 text-md font-medium mt-2">
                     ksh{product.price}
                   </p>
-                  <button className="mt-4 bg-pink-500 hover:bg-pink-600 text-white px-5 py-2 rounded-full font-medium transition">
-                    View Details
-                  </button>
+
+                  <Link to={`/product/${product._id}`}>
+                    <button className="mt-4 bg-pink-500 hover:bg-pink-600 text-white px-5 py-2 rounded-full font-medium transition">
+                      View Details
+                    </button>
+                  </Link>
                 </div>
               </div>
             ))}
           </div>
         )}
-      </section>
+      </section>  
       <Footer />
     </div>
   );
 }
 
 export default Products;
-
