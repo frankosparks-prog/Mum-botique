@@ -111,6 +111,8 @@ import Footer from "./Footer";
 import { Link } from "react-router-dom";
 import CircularProgress from "@mui/material/CircularProgress"; // ✅ Import Spinner
 
+const SERVER_URL = process.env.REACT_APP_SERVER_URL;
+
 function Products() {
   const [elegantProducts, setElegantProducts] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -122,7 +124,7 @@ function Products() {
     const fetchElegantProducts = async () => {
       try {
         const response = await fetch(
-          "http://localhost:5000/api/products/elegance"
+          `${SERVER_URL}/api/products/elegance`
         );
         const result = await response.json();
 

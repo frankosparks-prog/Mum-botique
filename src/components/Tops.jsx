@@ -99,6 +99,8 @@ import Footer from "./Footer";
 import { Link } from "react-router-dom";
 import CircularProgress from "@mui/material/CircularProgress";
 
+const SERVER_URL = process.env.REACT_APP_SERVER_URL;
+
 function Tops() {
   const [tops, setTops] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -109,7 +111,7 @@ function Tops() {
     // Fetch tops by category
     const fetchTops = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/products/category/Tops");
+        const res = await fetch(`${SERVER_URL}/api/products/category/Tops`);
         const data = await res.json();
         if (data.success) {
           setTops(data.products);

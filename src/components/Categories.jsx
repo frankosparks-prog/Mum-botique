@@ -12,22 +12,22 @@ function Categories() {
   const categories = [
     {
       name: "Shoes",
-      image: "https://images.unsplash.com/photo-1519741491086-345f3a3f3d84?auto=format&fit=crop&w=600&q=80",
+      image: "/images/Shoes.jpg",
       link: "/categories/shoes",
     },
     {
       name: "Dresses",
-      image: "https://images.unsplash.com/photo-1602810319424-d6c8f89deba7?auto=format&fit=crop&w=600&q=80",
+      image: "/images/Dress.jpg",
       link: "/categories/dresses",
     },
     {
       name: "Trousers",
-      image: "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&w=600&q=80",
+      image: "/images/Trousers.jpg",
       link: "/categories/trousers",
     },
     {
       name: "Tops",
-      image: "https://images.unsplash.com/photo-1618354691211-c3c1b5b75c80?auto=format&fit=crop&w=600&q=80",
+      image: "/images/Tops.jpg",
       link: "/categories/tops",
     },
   ];
@@ -50,7 +50,7 @@ function Categories() {
             <img
               src={category.image}
               alt={category.name}
-              className="w-full h-60 object-cover"
+              className="w-full h-48 sm:h-48 md:h-60 lg:h-64 object-cover rounded-t-2xl"
             />
             <div className="p-4 text-center">
               <h2 className="text-xl font-semibold text-pink-500">

@@ -99,6 +99,8 @@ import Footer from "./Footer";
 import { Link } from "react-router-dom";
 import CircularProgress from "@mui/material/CircularProgress";
 
+const SERVER_URL = process.env.REACT_APP_SERVER_URL;
+
 function Shoes() {
   const [shoes, setShoes] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -109,7 +111,7 @@ function Shoes() {
 
     const fetchShoes = async () => {
       try {
-        const response = await fetch("http://localhost:5000/api/products/category/Shoes"); // replace with your actual backend host if needed
+        const response = await fetch(`${SERVER_URL}/api/products/category/Shoes`); // replace with your actual backend host if needed
         const result = await response.json();
 
         if (!result.success) {

@@ -151,6 +151,8 @@ import "aos/dist/aos.css";
 import Footer from "./Footer";
 import VisitorTracker from "./VisitorTracker";
 
+const SERVER_URL = process.env.REACT_APP_SERVER_URL;
+
 function Home() {
   const [featuredProducts, setFeaturedProducts] = useState([]);
 
@@ -161,7 +163,7 @@ function Home() {
     const fetchFeaturedProducts = async () => {
       try {
         const response = await fetch(
-          "http://localhost:5000/api/products/featured"
+          `${SERVER_URL}/api/products/featured`
         );
         const data = await response.json();
         if (data.success) {

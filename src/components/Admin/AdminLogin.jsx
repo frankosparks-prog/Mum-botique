@@ -14,58 +14,65 @@ const AdminLogin = () => {
     e.preventDefault();
     try {
       const response = await axios.post(`${SERVER_URL}/api/admin/login`, { username, password });
-      
-      // Log the response for debugging
-      console.log("Login Response:", response.data);
-      
-      // Ensure the token exists in the response before storing it
+
       if (response.data && response.data.token) {
-        localStorage.setItem('adminToken', response.data.token); // Store token
+        localStorage.setItem('adminToken', response.data.token);
         navigate('/mc/admin/dashboard');
       } else {
         setError('Invalid response format. Token missing.');
-        console.error('Error: Token missing in response');
+        console.error('Token missing in response');
       }
     } catch (err) {
-      // Improved error handling
-      console.error("Login Error:", err.response || err); // Log the error in detail
+      console.error("Login Error:", err.response || err);
       setError(err.response?.data?.message || 'Login failed due to server error');
     }
   };
 
   return (
-    <div className="flex justify-center items-center w-screen h-screen bg-gradient-to-r from-blue-500 to-purple-600 ">
-      <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-sm">
-        <h2 className="text-2xl font-bold text-center text-gray-800 mb-6">MC Botique Login</h2>
+    <div
+      className="relative flex justify-center items-center w-screen h-screen bg-cover bg-center mt-[-1.9rem]"
+      style={{
+        backgroundImage:
+          "url('https://picsum.photos/800/350?random=20')", // Example image URL
+        backgroundSize: 'cover',
+      }}
+    >
+      <div className="absolute inset-0 bg-black bg-opacity-40 z-0" />
+      <div className="relative z-10 bg-white/90 backdrop-blur-lg p-10 rounded-2xl shadow-2xl w-full max-w-md border border-pink-200">
+        <h2 className="text-3xl font-bold text-center text-pink-700 mb-6">MC Boutique Admin</h2>
+        <p className="text-sm text-center text-gray-500 mb-8">Enter your credentials to access the dashboard</p>
         <form onSubmit={handleLogin}>
-          <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-600 mb-2">Username:</label>
+          <div className="mb-5">
+            <label className="block text-sm font-semibold text-gray-700 mb-2">Username</label>
             <input
               type="text"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
               required
-              className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-pink-500"
             />
           </div>
           <div className="mb-6">
-            <label className="block text-sm font-medium text-gray-600 mb-2">Password:</label>
+            <label className="block text-sm font-semibold text-gray-700 mb-2">Password</label>
             <input
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
-              className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-pink-500"
             />
           </div>
           {error && <p className="text-red-500 text-sm text-center mb-4">{error}</p>}
           <button
             type="submit"
-            className="w-full p-3 bg-blue-500 text-white font-semibold rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full py-3 bg-pink-600 text-white font-semibold rounded-xl hover:bg-pink-700 transition duration-200"
           >
             Login
           </button>
         </form>
+        <div className="mt-6 text-center text-gray-400 text-xs">
+          © 2025 MC Boutique. Admin Access Only.
+        </div>
       </div>
     </div>
   );

@@ -99,6 +99,8 @@ import Footer from "./Footer";
 import { Link } from "react-router-dom";
 import CircularProgress from "@mui/material/CircularProgress";
 
+const SERVER_URL = process.env.REACT_APP_SERVER_URL;
+
 function Dresses() {
   const [dresses, setDresses] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -110,7 +112,7 @@ function Dresses() {
     const fetchDresses = async () => {
       try {
         const res = await fetch(
-          "http://localhost:5000/api/products/category/Dresses"
+          `${SERVER_URL}/api/products/category/Dresses`
         );
         const data = await res.json();
         if (data.success) {

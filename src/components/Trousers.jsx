@@ -100,6 +100,8 @@ import Footer from "./Footer";
 import { Link } from "react-router-dom";
 import CircularProgress from "@mui/material/CircularProgress";
 
+const SERVER_URL = process.env.REACT_APP_SERVER_URL;
+
 function Trousers() {
   const [trousers, setTrousers] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -110,7 +112,7 @@ function Trousers() {
     // Fetch trousers by category
     const fetchTrousers = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/products/category/Trousers");
+        const res = await fetch(`${SERVER_URL}/api/products/category/Trousers`);
         const data = await res.json();
         if (data.success) {
           setTrousers(data.products);

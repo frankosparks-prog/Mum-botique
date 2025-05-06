@@ -4,6 +4,8 @@ import "aos/dist/aos.css";
 import { FaWhatsapp } from "react-icons/fa";
 import Footer from "./Footer";
 
+const SERVER_URL = process.env.REACT_APP_SERVER_URL;
+
 function Contact() {
   useEffect(() => {
     AOS.init({ duration: 1000 });
@@ -30,7 +32,7 @@ function Contact() {
     setStatus("Sending...");
 
     try {
-      const response = await fetch("http://localhost:5000/api/contact/send-mail", {
+      const response = await fetch(`${SERVER_URL}/api/contact/send-mail`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
