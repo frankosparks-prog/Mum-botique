@@ -12,7 +12,7 @@ const ProductDetailPage = () => {
   const [product, setProduct] = useState(null);
   const [selectedImage, setSelectedImage] = useState(null);
   const [related, setRelated] = useState([]);
-  const phoneNumber = "254738380692";
+  const phoneNumber = "254708127470";
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -102,7 +102,7 @@ const ProductDetailPage = () => {
               className="inline-block px-8 py-3 bg-green-600 text-white text-lg rounded-full shadow-md hover:bg-green-700 transition flex items-center justify-center gap-2"
             >
               <FaWhatsapp className="text-2xl" />
-              Buy via WhatsApp
+              Buy/Book via WhatsApp
             </a>
           </div>
         </div>

@@ -165,7 +165,7 @@ function Trousers() {
                 data-aos="fade-up"
               >
                 <img
-                  src={trouser.image}
+                  src={trouser.images?.[0]}
                   alt={trouser.name}
                   className="rounded-t-xl w-full h-60 object-cover"
                 />

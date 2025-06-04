@@ -200,7 +200,7 @@ function Products() {
                 className="border border-gray-100 rounded-xl shadow-md hover:shadow-lg transition duration-300 bg-white"
               >
                 <img
-                  src={product.image}
+                  src={product.images?.[0]}
                   alt={product.name}
                   className="rounded-t-xl w-full h-60 object-cover"
                 />

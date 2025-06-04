@@ -159,7 +159,7 @@ function Footer() {
               <h3 className="font-semibold text-xl mb-4">Contact Us</h3>
               <ul>
                 <li className="text-gray-900 font-semibold">
-                  Email: contact@MCboutique.com
+                  Email: teresawanjiru96@gmail.com
                 </li>
                 <li className="text-gray-900 font-semibold">
                   Phone: (+254) 708-127-470

@@ -171,7 +171,7 @@ function Shoes() {
                 data-aos-delay={index * 100}
               >
                 <img
-                  src={shoe.image}
+                  src={shoe.images?.[0]}
                   alt={shoe.name}
                   className="rounded-t-xl w-full h-60 object-cover"
                 />

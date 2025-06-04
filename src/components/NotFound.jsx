@@ -34,7 +34,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Particles from 'react-tsparticles';
-import { Engine } from 'tsparticles-engine';
+// import { Engine } from 'tsparticles-engine';
 import { loadBasic } from 'tsparticles-basic';
 
 const NotFound = () => {

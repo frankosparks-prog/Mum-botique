@@ -27,7 +27,7 @@ const Navbar = () => {
         {/* Logo & Title */}
         <div className="flex items-center space-x-3">
           <img
-            src="/images/beauty-logo.jpg"
+            src="/images/Beauty-logo.jpg"
             alt="MC Boutique Logo"
             className="h-12 md:h-14 rounded-full border-2 border-white"
           />
@@ -70,7 +70,7 @@ const Navbar = () => {
         <div className="flex items-center justify-between px-4 py-4 bg-pink-600">
           <div className="flex items-center space-x-2">
             <img
-              src="/images/beauty-logo.jpg"
+              src="/images/Beauty-logo.jpg"
               alt="Logo"
               className="h-10 rounded-full border-2 border-white"
             />

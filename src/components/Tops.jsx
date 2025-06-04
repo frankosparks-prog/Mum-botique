@@ -164,7 +164,7 @@ function Tops() {
                 data-aos="fade-up"
               >
                 <img
-                  src={top.image}
+                  src={top.images?.[0]}
                   alt={top.name}
                   className="rounded-t-xl w-full h-60 object-cover"
                 />

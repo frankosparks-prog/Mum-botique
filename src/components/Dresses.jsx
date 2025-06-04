@@ -168,7 +168,7 @@ function Dresses() {
                 data-aos="fade-up"
               >
                 <img
-                  src={dress.image}
+                  src={dress.images?.[0]}
                   alt={dress.name}
                   className="rounded-t-xl w-full h-60 object-cover"
                 />

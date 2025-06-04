@@ -123,16 +123,16 @@ function Contact() {
           <p className="text-gray-800 font-dancing">
             You can also reach us at:{" "}
             <a
-              href="mailto:mainafrank400@gmail.com?subject=Contact Us Inquiry&body=Hello, I would like to inquire about..."
+              href="mailto:teresawanjiru96@gmail.com?subject=Contact Us Inquiry&body=Hello, I would like to inquire about..."
               className="text-blue-800 underline"
             >
-              mainafrank400@gmail.com
+              teresawanjiru96@gmail.com
             </a>
           </p>
           <p className="text-gray-800 font-dancing">
             Or call us at:{" "}
-            <a href="tel:+254738380692" className="text-blue-800 underline">
-              +254 738380692
+            <a href="tel:+254708127470" className="text-blue-800 underline">
+              +254 708127470
             </a>
           </p>
         </form>
@@ -140,7 +140,7 @@ function Contact() {
         {/* WhatsApp */}
         <div className="flex justify-center mt-10" data-aos="fade-up">
           <a
-            href={`https://wa.me/254738380692?text=${whatsappMessage}`}
+            href={`https://wa.me/254708127470?text=${whatsappMessage}`}
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-3 px-6 py-3 bg-green-500 hover:bg-green-600 text-white rounded-full shadow-lg transition"
