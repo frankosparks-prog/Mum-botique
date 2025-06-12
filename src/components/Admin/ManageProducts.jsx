@@ -250,16 +250,16 @@ import React, { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 
 const SERVER_URL = process.env.REACT_APP_SERVER_URL;
-const categories = ["Trousers", "Tops", "Dresses", "Shoes"];
+const categories = ["Trousers", "Tops", "Dresses", "Shoes", "Ankara", "Bra"];
 
 const initialForm = {
   name: "",
   description: "",
-  price: "",            // as string
+  price: "", // as string
   category: "",
   isFeatured: false,
   isElegancePick: false,
-  images: [],           // array of URLs
+  images: [], // array of URLs
 };
 
 const ManageProducts = () => {
@@ -267,6 +267,8 @@ const ManageProducts = () => {
   const [form, setForm] = useState(initialForm);
   const [editId, setEditId] = useState(null);
   const [filter, setFilter] = useState("all");
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 9;
 
   useEffect(() => {
     fetchProducts();
@@ -377,7 +379,7 @@ const ManageProducts = () => {
       category: product.category,
       isFeatured: product.isFeatured,
       isElegancePick: product.isElegancePick,
-      images: product.images || [],   // prefill with existing images
+      images: product.images || [], // prefill with existing images
     });
     setEditId(product._id);
   };
@@ -399,6 +401,12 @@ const ManageProducts = () => {
     if (filter === "elegance") return p.isElegancePick;
     return p.category === filter;
   });
+
+  const totalPages = Math.ceil(filteredProducts.length / itemsPerPage);
+  const paginatedProducts = filteredProducts.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  );
 
   return (
     <div className="p-6 space-y-8">
@@ -544,7 +552,7 @@ const ManageProducts = () => {
 
       {/* Product Grid */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        {filteredProducts.map((product) => (
+        {paginatedProducts.map((product) => (
           <div key={product._id} className="bg-white p-4 rounded shadow">
             <img
               src={product.images?.[0]}
@@ -553,6 +561,7 @@ const ManageProducts = () => {
             />
             <h3 className="font-bold text-lg">{product.name}</h3>
             <p className="text-sm text-gray-600">{product.description}</p>
+            <span className="text-sm text-pink-500 font-semibold underline hover:text-pink-600 transition bg-pink-100 px-2 py-1 rounded-lg">likes: {product.likes}</span>
             <div className="flex justify-between items-center mt-2">
               <span className="font-semibold text-green-700">
                 Ksh {product.price}
@@ -574,6 +583,34 @@ const ManageProducts = () => {
             </div>
           </div>
         ))}
+      </div>
+      {/* Pagination */}
+      <div className="flex justify-center items-center space-x-4">
+        <button
+          disabled={currentPage === 1}
+          onClick={() => setCurrentPage((p) => p - 1)}
+          className="px-4 py-2 bg-pink-900 text-white rounded disabled:opacity-50"
+        >
+          Prev
+        </button>
+        {[...Array(totalPages)].map((_, i) => (
+          <button
+            key={i}
+            className={`px-3 py-1 rounded-full text-sm font-medium ${
+              currentPage === i + 1 ? "bg-pink-500 text-white" : "bg-pink-100"
+            }`}
+            onClick={() => setCurrentPage(i + 1)}
+          >
+            {i + 1}
+          </button>
+        ))}
+        <button
+          disabled={currentPage === totalPages}
+          onClick={() => setCurrentPage((p) => p + 1)}
+          className="px-4 py-2 bg-pink-900 text-white rounded disabled:opacity-50"
+        >
+          Next
+        </button>
       </div>
     </div>
   );

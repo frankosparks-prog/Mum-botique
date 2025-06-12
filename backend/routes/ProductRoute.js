@@ -367,6 +367,24 @@ router.get("/:id", async (req, res) => {
   }
 });
 
+// Increment likes
+router.post("/like/:id", async (req, res) => {
+  try {
+    const product = await Product.findByIdAndUpdate(
+      req.params.id,
+      { $inc: { likes: 1 } },
+      { new: true }
+    );
+
+    if (!product) return res.status(404).json({ success: false, message: "Product not found" });
+
+    res.json({ success: true, likes: product.likes });
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+});
+
+
 module.exports = router;
 
 

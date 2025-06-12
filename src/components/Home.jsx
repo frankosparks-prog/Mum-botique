@@ -228,7 +228,7 @@ function Home() {
                     <Link to={`/product/${product._id}`}>
                       <img
                         src={
-                          product.images?.[0] ||
+                          product.images?.[1] ||
                           "https://via.placeholder.com/400x250"
                         }
                         alt={product.name}

@@ -4,6 +4,7 @@ import Footer from "./Footer";
 import { FaWhatsapp } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import CircularProgress from "@mui/material/CircularProgress";
+import { FaHeart } from "react-icons/fa";
 
 const SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
@@ -12,6 +13,9 @@ const ProductDetailPage = () => {
   const [product, setProduct] = useState(null);
   const [selectedImage, setSelectedImage] = useState(null);
   const [related, setRelated] = useState([]);
+  const [likes, setLikes] = useState(0);
+  const [floatingHearts, setFloatingHearts] = useState([]);
+
   const phoneNumber = "254708127470";
 
   useEffect(() => {
@@ -22,6 +26,7 @@ const ProductDetailPage = () => {
         const data = await response.json();
         setProduct(data.product);
         setSelectedImage(data.product.images?.[0]);
+        setLikes(data.product.likes || 0);
 
         // Fetch related products
         const category = data.product.category;
@@ -47,6 +52,30 @@ const ProductDetailPage = () => {
       </div>
     );
   }
+
+  const handleLike = async () => {
+    try {
+      const response = await fetch(
+        `${SERVER_URL}/api/products/like/${productId}`,
+        {
+          method: "POST",
+        }
+      );
+      const data = await response.json();
+      if (data.success) {
+        setLikes(data.likes);
+        const newHeart = { id: Date.now(), productId };
+        setFloatingHearts((prev) => [...prev, newHeart]);
+
+        // Remove after animation
+        setTimeout(() => {
+          setFloatingHearts((prev) => prev.filter((h) => h.id !== newHeart.id));
+        }, 1200);
+      }
+    } catch (error) {
+      console.error("Failed to like product:", error);
+    }
+  };
 
   const handleImageClick = (image) => setSelectedImage(image);
   const message = `Hi, I'm interested in the product: ${product.name}. Please provide more details.`;
@@ -95,15 +124,46 @@ const ProductDetailPage = () => {
               Ksh {product.price}
             </div>
 
-            <a
-              href={whatsappURL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-block px-8 py-3 bg-green-600 text-white text-lg rounded-full shadow-md hover:bg-green-700 transition flex items-center justify-center gap-2"
-            >
-              <FaWhatsapp className="text-2xl" />
-              Buy/Book via WhatsApp
-            </a>
+            <div className="flex items-center justify-center gap-8">
+              <div className="d">
+                <a
+                  href={whatsappURL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block px-8 py-3 bg-green-600 text-white text-lg rounded-full shadow-md hover:bg-green-700 transition flex items-center justify-center gap-2"
+                >
+                  <FaWhatsapp className="text-2xl" />
+                  Buy/Book via WhatsApp
+                </a>
+              </div>
+              {/* Floating hearts */}
+              {floatingHearts
+                .filter((h) => h.productId === product._id)
+                .map((heart) => (
+                  <div
+                    key={heart.id}
+                    className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 text-pink-500 text-2xl pointer-events-none"
+                    style={{
+                      animation: "floatHeart 1.2s ease-out forwards",
+                    }}
+                  >
+                    ❤️❤️
+                  </div>
+                ))}
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={handleLike}
+                  // className="text-pink-600 text-2xl hover:text-pink-800 transition h-8 w-8 flex items-center justify-center"
+                  className="p-3 rounded-full border-2 transition-all bg-red-100 border-red-500 text-red-500 hover:text-pink-800"
+                  title="Like this product"
+                >
+                  <FaHeart />
+                </button>
+                <span className="text-gray-700 text-md font-semibold mt-4 underline hover:text-pink-600 transition bg-pink-100 px-2 py-1 rounded-lg">
+                  {likes} like{likes !== 1 ? "s" : ""}
+                </span>
+              </div>
+            </div>
           </div>
         </div>
 

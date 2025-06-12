@@ -117,15 +117,15 @@ function Products() {
   const [elegantProducts, setElegantProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 6;
 
   useEffect(() => {
     AOS.init({ duration: 1000, once: true });
 
     const fetchElegantProducts = async () => {
       try {
-        const response = await fetch(
-          `${SERVER_URL}/api/products/elegance`
-        );
+        const response = await fetch(`${SERVER_URL}/api/products/elegance`);
         const result = await response.json();
 
         if (!result.success) {
@@ -142,6 +142,12 @@ function Products() {
 
     fetchElegantProducts();
   }, []);
+
+  const totalPages = Math.ceil(elegantProducts.length / itemsPerPage);
+  const paginatedProducts = elegantProducts.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  );
 
   return (
     <div className="bg-white text-gray-800 mt-[-1.9rem]">
@@ -192,7 +198,7 @@ function Products() {
             data-aos="fade-up"
             data-aos-delay="400"
           >
-            {elegantProducts.map((product, index) => (
+            {paginatedProducts.map((product, index) => (
               <div
                 key={product._id}
                 data-aos="fade-up"
@@ -220,7 +226,37 @@ function Products() {
             ))}
           </div>
         )}
-      </section>  
+        {/* Pagination */}
+          <div className="flex justify-center items-center space-x-4">
+            <button
+              disabled={currentPage === 1}
+              onClick={() => setCurrentPage((p) => p - 1)}
+              className="px-4 py-2 bg-pink-900 text-white rounded disabled:opacity-50"
+            >
+              Prev
+            </button>
+            {[...Array(totalPages)].map((_, i) => (
+              <button
+                key={i}
+                className={`px-3 py-1 rounded-full text-sm font-medium ${
+                  currentPage === i + 1
+                    ? "bg-pink-500 text-white"
+                    : "bg-pink-100"
+                }`}
+                onClick={() => setCurrentPage(i + 1)}
+              >
+                {i + 1}
+              </button>
+            ))}
+            <button
+              disabled={currentPage === totalPages}
+              onClick={() => setCurrentPage((p) => p + 1)}
+              className="px-4 py-2 bg-pink-900 text-white rounded disabled:opacity-50"
+            >
+              Next
+            </button>
+          </div>
+      </section>
       <Footer />
     </div>
   );

@@ -23,6 +23,8 @@ import AdminLogin from "./components/Admin/AdminLogin";
 import ProtectedRoute from "./components/Admin/ProtectedRoute";
 import ManageProducts from "./components/Admin/ManageProducts";
 import ProductDetailPage from "./components/ProductDetailPage";
+import Bra from "./components/Bra";
+import Ankara from "./components/Ankara";
 
 const App = () => {
   return (
@@ -42,6 +44,8 @@ const App = () => {
           <Route path="/categories/dresses" element={<Dresses />} />
           <Route path="/categories/shoes" element={<Shoes />} />
           <Route path="/categories/tops" element={<Tops />} />
+          <Route path="/categories/ankara" element={<Ankara />} />
+          <Route path="/categories/bra" element={<Bra />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="*" element={<NotFound />} />
 

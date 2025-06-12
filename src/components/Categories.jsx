@@ -30,6 +30,16 @@ function Categories() {
       image: "/images/Tops.jpg",
       link: "/categories/tops",
     },
+    {
+      name: "Ankara",
+      image: "/images/Ankara.jpg",
+      link: "/categories/ankara",
+    },
+    {
+      name: "Bras",
+      image: "/images/Bra.jpg",
+      link: "/categories/bra",
+    },
   ];
 
   return (

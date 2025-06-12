@@ -7,15 +7,22 @@ import {
   ShoppingBagIcon,
   TagIcon,
   PhoneIcon,
+  SearchIcon,
 } from "lucide-react";
+import ProductSearch from "./ProductSearch";
 
 const Navbar = () => {
   const [isNavOpen, setIsNavOpen] = useState(false);
+  const [isSearchOpen, setIsSearchOpen] = useState(false); // NEW
 
   const links = [
     { path: "/", name: "Home", icon: <HomeIcon size={20} /> },
     { path: "/about", name: "About", icon: <FileTextIcon size={20} /> },
-    { path: "/products", name: "Products", icon: <ShoppingBagIcon size={20} /> },
+    {
+      path: "/products",
+      name: "Products",
+      icon: <ShoppingBagIcon size={20} />,
+    },
     { path: "/categories", name: "Categories", icon: <TagIcon size={20} /> },
     { path: "/contact", name: "Contact Us", icon: <PhoneIcon size={20} /> },
   ];
@@ -35,7 +42,13 @@ const Navbar = () => {
             MC Boutique
           </span>
         </div>
-
+        <button
+          onClick={() => setIsSearchOpen(true)}
+          className="md:hidden ml-36 text-white hover:text-yellow-300 transition"
+          aria-label="Search"
+        >
+          <SearchIcon size={24} />
+        </button>
         {/* Mobile Menu Button */}
         <button
           className="md:hidden text-white text-3xl hover:scale-110 transition-transform focus:outline-none"
@@ -58,6 +71,13 @@ const Navbar = () => {
             </Link>
           ))}
         </nav>
+        <button
+          onClick={() => setIsSearchOpen(true)}
+          className="hidden md:block text-white hover:text-yellow-300 transition"
+          aria-label="Search"
+        >
+          <SearchIcon size={24} />
+        </button>
       </header>
 
       {/* Sidebar Mobile */}
@@ -99,7 +119,9 @@ const Navbar = () => {
               <div className="w-6 h-6 flex items-center justify-center text-pink-700">
                 {link.icon}
               </div>
-              <span className="text-black text-base font-medium">{link.name}</span>
+              <span className="text-black text-base font-medium">
+                {link.name}
+              </span>
             </Link>
           ))}
         </nav>
@@ -122,6 +144,19 @@ const Navbar = () => {
           className="fixed inset-0 bg-black bg-opacity-40 z-[9998]"
           onClick={() => setIsNavOpen(false)}
         />
+      )}
+      {isSearchOpen && (
+        <div className="fixed inset-0 bg-black bg-opacity-60 z-[10000]  pt-[80px] px-4 overflow-auto">
+          <div className="bg-white p-4 sm:p-6 rounded-xl shadow-lg w-full max-w-xl mx-auto relative">
+            <button
+              className="absolute top-1 right-1 text-pink-600 hover:text-pink-800"
+              onClick={() => setIsSearchOpen(false)}
+            >
+              ✖
+            </button>
+            <ProductSearch onClose={() => setIsSearchOpen(false)} />
+          </div>
+        </div>
       )}
     </div>
   );
