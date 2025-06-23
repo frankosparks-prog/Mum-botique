@@ -15,9 +15,17 @@ const ProductDetailPage = () => {
   const [related, setRelated] = useState([]);
   const [likes, setLikes] = useState(0);
   const [floatingHearts, setFloatingHearts] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [activeImageIndex, setActiveImageIndex] = useState(0);
 
   const phoneNumber = "254708127470";
 
+  useEffect(() => {
+    if (product?.images?.length) {
+      setSelectedImage(product.images[activeImageIndex]);
+    }
+  }, [activeImageIndex, product]);
+  
   useEffect(() => {
     const fetchProduct = async () => {
       try {
@@ -77,38 +85,47 @@ const ProductDetailPage = () => {
     }
   };
 
-  const handleImageClick = (image) => setSelectedImage(image);
-  const message = `Hi, I'm interested in the product: ${product.name}. Please provide more details.`;
+  // const handleImageClick = (image) => setSelectedImage(image);
+  const message = `Hi, I'm interested in the product: ${product.name}.( ${product.images?.[0]} ). Please provide more details.`;
   const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
     message
   )}`;
+
+  const openModalAtIndex = (index) => {
+    setActiveImageIndex(index);
+    // setIsModalOpen(true);
+  };
 
   return (
     <>
       <div className="max-w-7xl mx-auto px-4 py-12">
         <div className="grid md:grid-cols-2 gap-12 items-center">
-          {/* Images */}
-          <div className="flex flex-col items-center">
-            <div className="w-full h-[400px] rounded-xl overflow-hidden shadow-md">
+          <div className="flex flex-col items-center w-full">
+            {/* Main Image with Hover Zoom */}
+            <div
+              className="relative w-full max-w-3xl h-[500px] overflow-hidden rounded-xl shadow-lg bg-gray-100 group cursor-pointer"
+              onClick={() => setIsModalOpen(true)}
+            >
               <img
                 src={selectedImage}
                 alt={product.name}
-                className="w-full h-full object-cover transition duration-300"
+                className="w-full h-full object-contain transform transition-transform duration-500 ease-in-out group-hover:scale-110"
               />
             </div>
 
-            <div className="flex gap-12 mt-4">
+            {/* Thumbnails */}
+            <div className="flex flex-wrap justify-center gap-4 mt-6">
               {product.images?.map((img, idx) => (
                 <img
                   key={idx}
                   src={img}
-                  onClick={() => handleImageClick(img)}
-                  className={`w-28 h-28 rounded-lg object-cover cursor-pointer border-2 ${
+                  onClick={() => openModalAtIndex(idx)}
+                  className={`w-24 h-24 rounded-lg object-cover cursor-pointer border-2 ${
                     selectedImage === img
-                      ? "border-pink-900"
-                      : "border-transparent"
+                      ? "border-pink-700"
+                      : "border-gray-300"
                   } hover:scale-105 transition`}
-                  alt="Thumb"
+                  alt="Thumbnail"
                 />
               ))}
             </div>
@@ -202,6 +219,57 @@ const ProductDetailPage = () => {
           </div>
         )}
       </div>
+
+      {isModalOpen && (
+        <div
+          className="fixed inset-0 z-50 bg-black bg-opacity-80 flex items-center justify-center"
+          onClick={() => setIsModalOpen(false)} // close on backdrop click
+        >
+          <div
+            className="relative max-w-5xl w-[90%] h-[80vh] bg-white rounded-lg overflow-hidden shadow-xl"
+            onClick={(e) => e.stopPropagation()} // prevent modal from closing on image click
+          >
+            {/* Close Button */}
+            <button
+              onClick={() => setIsModalOpen(false)}
+              className="absolute top-4 right-4 text-white bg-red-500 hover:bg-red-700 p-2 rounded-full z-50"
+            >
+              ✕
+            </button>
+
+            {/* Prev Button */}
+            <button
+              onClick={() =>
+                setActiveImageIndex((prev) =>
+                  prev === 0 ? product.images.length - 1 : prev - 1
+                )
+              }
+              className="absolute left-4 top-1/2 transform -translate-y-1/2 text-white text-3xl z-50 bg-black bg-opacity-40 hover:bg-opacity-70 p-2 rounded-full"
+            >
+              ‹
+            </button>
+
+            {/* Next Button */}
+            <button
+              onClick={() =>
+                setActiveImageIndex((prev) =>
+                  prev === product.images.length - 1 ? 0 : prev + 1
+                )
+              }
+              className="absolute right-4 top-1/2 transform -translate-y-1/2 text-white text-3xl z-50 bg-black bg-opacity-40 hover:bg-opacity-70 p-2 rounded-full"
+            >
+              ›
+            </button>
+
+            {/* Modal Image */}
+            <img
+              src={product.images[activeImageIndex]}
+              alt="Zoomed"
+              className="w-full h-full object-contain bg-black"
+            />
+          </div>
+        </div>
+      )}
 
       <Footer />
     </>

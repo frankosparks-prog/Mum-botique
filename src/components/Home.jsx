@@ -195,7 +195,7 @@ function Home() {
           <div className="flex space-x-6">
             <Link
               to="/products"
-              className="bg-pink-600 hover:bg-pink-700 text-white font-semibold py-3 px-8 rounded-full shadow-md transition-all duration-300 transform hover:scale-105"
+              className="bg-pink-600 text-white font-semibold py-3 px-8 rounded-full shadow-md transition-all duration-300 transform hover:scale-105"
             >
               Shop Now
             </Link>
@@ -232,7 +232,7 @@ function Home() {
                           "https://via.placeholder.com/400x250"
                         }
                         alt={product.name}
-                        className="w-full h-56 object-cover hover:opacity-90 transition"
+                        className="w-full hover:opacity-90 transition object-contain "
                       />
                     </Link>
                     <div className="p-4">

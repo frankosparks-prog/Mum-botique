@@ -126,7 +126,7 @@ function Ankara() {
                 <img
                   src={ankara.images?.[0]}
                   alt={ankara.name}
-                  className="rounded-t-xl w-full h-60 object-cover"
+                  className="rounded-t-xl w-full hover:opacity-90 transition object-contain"
                 />
                 <div className="p-4 text-center">
                   <h3 className="text-lg font-semibold">{ankara.name}</h3>

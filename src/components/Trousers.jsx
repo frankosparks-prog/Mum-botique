@@ -223,7 +223,7 @@ function Trousers() {
                 <img
                   src={trouser.images?.[1]}
                   alt={trouser.name}
-                  className="rounded-t-xl w-full h-60 object-cover"
+                  className="rounded-t-xl w-full hover:opacity-90 transition object-contain"
                 />
                 <div className="p-4 text-center">
                   <h3 className="text-lg font-semibold">{trouser.name}</h3>

@@ -118,7 +118,7 @@ function Products() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 6;
+  const itemsPerPage = 8;
 
   useEffect(() => {
     AOS.init({ duration: 1000, once: true });
@@ -208,7 +208,7 @@ function Products() {
                 <img
                   src={product.images?.[0]}
                   alt={product.name}
-                  className="rounded-t-xl w-full h-60 object-cover"
+                  className="rounded-t-xl w-full hover:opacity-90 transition object-contain"
                 />
                 <div className="p-4 text-center">
                   <h3 className="text-lg font-semibold">{product.name}</h3>
@@ -227,7 +227,7 @@ function Products() {
           </div>
         )}
         {/* Pagination */}
-          <div className="flex justify-center items-center space-x-4">
+          <div className="flex justify-center items-center space-x-4 mt-10">
             <button
               disabled={currentPage === 1}
               onClick={() => setCurrentPage((p) => p - 1)}
