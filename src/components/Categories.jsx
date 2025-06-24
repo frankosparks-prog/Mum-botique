@@ -61,6 +61,7 @@ function Categories() {
               src={category.image}
               alt={category.name}
               className="w-full h-48 sm:h-48 md:h-60 lg:h-64 object-cover rounded-t-2xl"
+              width="400" height="300" loading="lazy"
             />
             <div className="p-4 text-center">
               <h2 className="text-xl font-semibold text-pink-500">

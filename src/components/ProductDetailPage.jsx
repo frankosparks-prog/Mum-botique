@@ -5,6 +5,7 @@ import { FaWhatsapp } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import CircularProgress from "@mui/material/CircularProgress";
 import { FaHeart } from "react-icons/fa";
+import { Helmet } from "react-helmet-async";
 
 const SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
@@ -25,7 +26,7 @@ const ProductDetailPage = () => {
       setSelectedImage(product.images[activeImageIndex]);
     }
   }, [activeImageIndex, product]);
-  
+
   useEffect(() => {
     const fetchProduct = async () => {
       try {
@@ -98,6 +99,30 @@ const ProductDetailPage = () => {
 
   return (
     <>
+      {product && (
+        <Helmet>
+          <title>{product.name} | Beauty Boutique</title>
+          <meta
+            name="description"
+            content={`Discover ${product.name}. Buy now from Beauty Boutique — Affordable. Elegant. Fast.`}
+          />
+          <meta property="og:title" content={product.name} />
+          <meta
+            property="og:description"
+            content={`Explore ${product.name} now on Beauty Boutique.`}
+          />
+          <meta property="og:image" content={product.images?.[0]} />
+          <meta
+            property="og:url"
+            content={`https://mcbotique.site/product/${productId}`}
+          />
+          <link
+            rel="canonical"
+            href={`https://mcbotique.site/product/${productId}`}
+          />
+        </Helmet>
+      )}
+
       <div className="max-w-7xl mx-auto px-4 py-12">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div className="flex flex-col items-center w-full">

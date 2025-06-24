@@ -110,6 +110,7 @@ import "aos/dist/aos.css";
 import Footer from "./Footer";
 import { Link } from "react-router-dom";
 import CircularProgress from "@mui/material/CircularProgress"; // ✅ Import Spinner
+import { Helmet } from "react-helmet-async";
 
 const SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
@@ -151,6 +152,25 @@ function Products() {
 
   return (
     <div className="bg-white text-gray-800 mt-[-1.9rem]">
+      <Helmet>
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "http://schema.org",
+            "@type": "Product",
+            name: elegantProducts.name,
+            image: elegantProducts.images?.[0],
+            description: elegantProducts.description,
+            brand: "MC Boutique",
+            offers: {
+              "@type": "Offer",
+              price: elegantProducts.price,
+              priceCurrency: "KES",
+              availability: "InStock",
+            },
+          })}
+        </script>
+      </Helmet>
+
       {/* Hero Section */}
       <div
         className="h-[350px] flex items-center justify-center bg-cover bg-center relative"
@@ -209,6 +229,7 @@ function Products() {
                   src={product.images?.[0]}
                   alt={product.name}
                   className="rounded-t-xl w-full hover:opacity-90 transition object-contain"
+                  loading="lazy"
                 />
                 <div className="p-4 text-center">
                   <h3 className="text-lg font-semibold">{product.name}</h3>
@@ -227,35 +248,33 @@ function Products() {
           </div>
         )}
         {/* Pagination */}
-          <div className="flex justify-center items-center space-x-4 mt-10">
+        <div className="flex justify-center items-center space-x-4 mt-10">
+          <button
+            disabled={currentPage === 1}
+            onClick={() => setCurrentPage((p) => p - 1)}
+            className="px-4 py-2 bg-pink-900 text-white rounded disabled:opacity-50"
+          >
+            Prev
+          </button>
+          {[...Array(totalPages)].map((_, i) => (
             <button
-              disabled={currentPage === 1}
-              onClick={() => setCurrentPage((p) => p - 1)}
-              className="px-4 py-2 bg-pink-900 text-white rounded disabled:opacity-50"
+              key={i}
+              className={`px-3 py-1 rounded-full text-sm font-medium ${
+                currentPage === i + 1 ? "bg-pink-500 text-white" : "bg-pink-100"
+              }`}
+              onClick={() => setCurrentPage(i + 1)}
             >
-              Prev
+              {i + 1}
             </button>
-            {[...Array(totalPages)].map((_, i) => (
-              <button
-                key={i}
-                className={`px-3 py-1 rounded-full text-sm font-medium ${
-                  currentPage === i + 1
-                    ? "bg-pink-500 text-white"
-                    : "bg-pink-100"
-                }`}
-                onClick={() => setCurrentPage(i + 1)}
-              >
-                {i + 1}
-              </button>
-            ))}
-            <button
-              disabled={currentPage === totalPages}
-              onClick={() => setCurrentPage((p) => p + 1)}
-              className="px-4 py-2 bg-pink-900 text-white rounded disabled:opacity-50"
-            >
-              Next
-            </button>
-          </div>
+          ))}
+          <button
+            disabled={currentPage === totalPages}
+            onClick={() => setCurrentPage((p) => p + 1)}
+            className="px-4 py-2 bg-pink-900 text-white rounded disabled:opacity-50"
+          >
+            Next
+          </button>
+        </div>
       </section>
       <Footer />
     </div>

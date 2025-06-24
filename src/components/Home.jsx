@@ -150,6 +150,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import Footer from "./Footer";
 import VisitorTracker from "./VisitorTracker";
+import { Helmet } from "react-helmet-async";
 
 const SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
@@ -162,9 +163,7 @@ function Home() {
     // Fetch featured products from backend
     const fetchFeaturedProducts = async () => {
       try {
-        const response = await fetch(
-          `${SERVER_URL}/api/products/featured`
-        );
+        const response = await fetch(`${SERVER_URL}/api/products/featured`);
         const data = await response.json();
         if (data.success) {
           setFeaturedProducts(data.products);
@@ -181,6 +180,28 @@ function Home() {
 
   return (
     <>
+      <Helmet>
+        <title>MC Boutique | Classic, Elegant, and Timeless Beauty ✨</title>
+        <meta
+          name="description"
+          content="Shop classic and elegant fashion at MC Boutique — featuring timeless dresses, stylish tops, trousers, shoes, and more. Affordable & Secure!"
+        />
+        <meta
+          property="og:title"
+          content="MC Boutique | Your Style Destination"
+        />
+        <meta
+          property="og:description"
+          content="Discover beautiful, curated fashion at MC Boutique — for every elegant woman."
+        />
+        <meta
+          property="og:image"
+          content="https://mcbotique.site/Beauty-logo.jpg"
+        />
+        <meta property="og:url" content="https://mcbotique.site/" />
+        <link rel="canonical" href="https://mcbotique.site/" />
+      </Helmet>
+
       <div className="bg-pink-50 min-h-screen flex flex-col justify-center items-center mt-[-1.9rem]">
         <VisitorTracker /> {/* Visitor Tracker Component */}
         {/* Hero Section */}
@@ -232,7 +253,8 @@ function Home() {
                           "https://via.placeholder.com/400x250"
                         }
                         alt={product.name}
-                        className="w-full hover:opacity-90 transition object-contain "
+                        className="w-full hover:opacity-90 transition object-contain"
+                        loading="lazy"
                       />
                     </Link>
                     <div className="p-4">

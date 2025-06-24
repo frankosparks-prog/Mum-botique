@@ -221,6 +221,7 @@ function Dresses() {
                   src={dress.images?.[1]}
                   alt={dress.name}
                   className="rounded-t-xl w-full hover:opacity-90 transition object-contain"
+                  loading="lazy"
                 />
                 <div className="p-4 text-center">
                   <h3 className="text-lg font-semibold">{dress.name}</h3>
