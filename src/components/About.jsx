@@ -3,6 +3,8 @@ import Footer from "./Footer";
 import { Link } from "react-router-dom";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import backgroundImage from "../Assets/about-us2.jpg";
+import "../index.css";
 
 function About() {
   useEffect(() => {
@@ -13,19 +15,19 @@ function About() {
     <>
       <div className="bg-white text-gray-800 overflow-x-hidden mt-[-1.9rem]">
         {/* Hero Section */}
-        <div
-          className="relative h-[350px] flex items-center justify-center bg-cover bg-center w-full"
-          style={{
-            backgroundImage: "url('https://picsum.photos/400/250?random=4')",
-          }}
-        >
-          <div className="bg-black/50 w-full h-full absolute top-0 left-0" />
-          <h1
+       <div
+  className="relative h-[350px] flex items-center justify-center bg-contain bg-center bg-no-repeat w-full"
+  style={{
+    backgroundImage: `url(${backgroundImage})`,
+  }}
+>
+          <div className="bg-black/10 w-full h-full absolute top-0 left-0" />
+          {/* <h1
             className="relative text-white text-4xl md:text-5xl font-bold drop-shadow-lg z-10 px-4 text-center"
             data-aos="fade-up"
           >
             About Us
-          </h1>
+          </h1> */}
         </div>
 
         {/* Our Story */}

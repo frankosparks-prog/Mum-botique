@@ -150,6 +150,8 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import Footer from "./Footer";
 import VisitorTracker from "./VisitorTracker";
+import back from  "../Assets/clothing3.png"
+import "../index.css"; // Ensure AOS styles are imported
 
 const SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
@@ -181,32 +183,46 @@ function Home() {
 
   return (
     <>
-      <div className="bg-pink-50 min-h-screen flex flex-col justify-center items-center mt-[-1.9rem]">
+       <div className="bg-pink-50 min-h-screen flex flex-col justify-center items-center mt-[-1.9rem]">
         <VisitorTracker /> {/* Visitor Tracker Component */}
         {/* Hero Section */}
-        <section className="flex flex-col items-center justify-center px-4 py-16 md:py-32 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold text-pink-600 mb-4">
-            Welcome to MC Boutique ✨
-          </h1>
-          <p className="text-xl md:text-2xl text-gray-700 mb-8">
-            Explore a collection of classic, elegant, and timeless beauty
-            products
-          </p>
-          <div className="flex space-x-6">
-            <Link
-              to="/products"
-              className="bg-pink-600 hover:bg-pink-700 text-white font-semibold py-3 px-8 rounded-full shadow-md transition-all duration-300 transform hover:scale-105"
-            >
-              Shop Now
-            </Link>
-            <Link
-              to="/contact"
-              className="border-2 border-pink-600 hover:bg-pink-600 text-pink-600 hover:text-white font-semibold py-3 px-8 rounded-full shadow-md transition-all duration-300 transform hover:scale-105"
-            >
-              Contact Us
-            </Link>
-          </div>
+        <section className="flex flex-col md:flex-row items-center justify-center px-4 py-12 md:py-18 text-center gap-4 max-w-6xl mx-auto">
+
+      {/* Text Block */}
+      <div className="md:w-3/4">
+        <h1 className="text-4xl md:text-5xl font-bold text-pink-600 mb-3 fresca-font">
+          Welcome to MC Boutique ✨
+        </h1>
+        <p className="text-xl md:text-2xl text-gray-700 mb-8 inconsolata-font">
+          Explore a collection of classic, elegant, and timeless beauty products
+        </p>
+       <div className="flex flex-row items-center justify-center gap-4 inconsolata-font">
+
+          <Link
+            to="/products"
+            className="bg-pink-600 hover:bg-pink-700 text-white font-semibold py-3 px-8 rounded-full shadow-md transition-all duration-300 transform hover:scale-105"
+          >
+            Shop Now
+          </Link>
+          <Link
+            to="/contact"
+            className="border-2 border-pink-600 hover:bg-pink-600 text-pink-600 hover:text-white font-semibold py-3 px-8 rounded-full shadow-md transition-all duration-300 transform hover:scale-105"
+          >
+            Contact Us
+          </Link>
+        </div>
+      </div>
+
+      {/* Image Block */}
+      <div className="md:w-1/2">
+        <img
+          src={back}
+          alt="Hero"
+          className="w-full max-w-md mx-auto rounded-xl "
+        />
+      </div>
         </section>
+
         {/* Featured Products Section */}
         <section className="w-full px-6 py-16 bg-white">
           <div className="max-w-7xl mx-auto text-center">

@@ -110,6 +110,8 @@ import "aos/dist/aos.css";
 import Footer from "./Footer";
 import { Link } from "react-router-dom";
 import CircularProgress from "@mui/material/CircularProgress"; // ✅ Import Spinner
+import "../index.css"; // ✅ Import global styles
+import collection from "../Assets/collection2.jpg";
 
 const SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
@@ -147,9 +149,9 @@ function Products() {
     <div className="bg-white text-gray-800 mt-[-1.9rem]">
       {/* Hero Section */}
       <div
-        className="h-[350px] flex items-center justify-center bg-cover bg-center relative"
+        className="h-[350px] flex items-center justify-center bg-contain bg-no-repeat bg-center relative"
         style={{
-          backgroundImage: "url('https://picsum.photos/400/250?random=1')",
+          backgroundImage: `url(${collection})`, // ✅ Use the imported image
         }}
       >
         <div className="absolute inset-0 bg-black/40"></div>
