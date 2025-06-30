@@ -196,7 +196,7 @@ function Home() {
         <p className="text-xl md:text-2xl text-gray-700 mb-8 inconsolata-font">
           Explore a collection of classic, elegant, and timeless beauty products
         </p>
-       <div className="flex flex-row items-center justify-center gap-4 inconsolata-font">
+       <div className="flex flex-row items-center justify-center gap-4 ">
 
           <Link
             to="/products"
@@ -224,17 +224,17 @@ function Home() {
         </section>
 
         {/* Featured Products Section */}
-        <section className="w-full px-6 py-16 bg-white">
+        <section className="w-full px-6 py-8 bg-white">
           <div className="max-w-7xl mx-auto text-center">
-            <h2 className="text-3xl font-bold text-pink-600 mb-8">
+            <h2 className="text-3xl font-bold text-pink-600 mb-8 inconsolata-font underline">
               Featured Products
             </h2>
             {featuredProducts.length === 0 ? (
-              <p className="text-gray-600 bg-pink-100 border border-pink-300 rounded-lg px-6 py-4 text-lg font-medium shadow-sm inline-block">
+              <p className="text-gray-600 bg-pink-100 border border-pink-300 rounded-lg px-6 py-4 text-lg font-medium shadow-sm inline-block inconsolata-font">
                 No featured products available.
               </p>
             ) : (
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 ">
                 {featuredProducts.map((product) => (
                   <div
                     key={product._id}
@@ -248,19 +248,19 @@ function Home() {
                           "https://via.placeholder.com/400x250"
                         }
                         alt={product.name}
-                        className="w-full h-56 object-cover hover:opacity-90 transition"
+                        className="w-full h-56 object-cover hover:opacity-90 transition font-semibold inconsolata-font"
                       />
                     </Link>
-                    <div className="p-4">
-                      <h3 className="text-xl font-semibold text-gray-800">
+                    <div className="p-4 flex flex-col items-center">
+                      <h3 className="text-xl font-regular text-gray-800">
                         {product.name}
                       </h3>
-                      <p className="text-pink-600 font-semibold mt-2">
+                      <p className="text-green-500 font-semibold inconsolata-font">
                         Ksh {product.price.toFixed(2)}
                       </p>
                       <Link
                         to={`/product/${product._id}`}
-                        className="mt-4 inline-block text-pink-600 hover:text-pink-700 transition-all"
+                        className="mt-2 inline-block text-pink-500 hover:text-pink-700 transition-all font-bold inconsolata-font"
                       >
                         View Product
                       </Link>

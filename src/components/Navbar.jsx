@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { Link } from "react-router-dom";
+import "../index.css"; // Ensure you have Tailwind CSS set up
 
 import {
   HomeIcon,
@@ -33,7 +34,7 @@ const Navbar = () => {
             alt="MC Boutique Logo"
             className="h-12 md:h-14 rounded-full border-2 border-white"
           />
-          <span className="text-white font-bold text-2xl md:text-3xl font-serif drop-shadow">
+          <span className="text-white font-bold text-2xl md:text-3xl font-serif drop-shadow fresca-font ">
             MC Boutique
           </span>
         </div>

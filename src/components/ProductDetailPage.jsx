@@ -4,6 +4,8 @@ import Footer from "./Footer";
 import { FaWhatsapp } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import CircularProgress from "@mui/material/CircularProgress";
+import "../index.css"; // Import global styles
+
 
 const SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
@@ -91,7 +93,7 @@ const ProductDetailPage = () => {
             <p className="text-gray-600 text-lg leading-relaxed">
               {product.description}
             </p>
-            <div className="text-2xl font-semibold text-green-600">
+            <div className="text-3xl font-semibold text-green-600 inconsolata-font">
               Ksh {product.price}
             </div>
 
@@ -110,7 +112,7 @@ const ProductDetailPage = () => {
         {/* Related Products Section */}
         {related.length > 0 && (
           <div className="mt-16">
-            <h2 className="text-2xl font-semibold text-gray-800 mb-6 text-center">
+            <h2 className="text33xl font-semibold text-gray-800 mb-6 text-center inconsolata-font underline">
               Related Products
             </h2>
 
@@ -118,7 +120,7 @@ const ProductDetailPage = () => {
               {related.map((rel) => (
                 <div
                   key={rel._id}
-                  className="min-w-[250px] bg-white rounded-xl shadow hover:shadow-lg transition duration-300 p-4"
+                  className="min-w-[250px] bg-white rounded-xl shadow hover:shadow-lg transition duration-300 p-4 items-center text-center"
                 >
                   <img
                     src={rel.images[0]}
@@ -128,11 +130,11 @@ const ProductDetailPage = () => {
                   <h3 className="text-lg font-semibold text-gray-800">
                     {rel.name}
                   </h3>
-                  <p className="text-green-600 font-medium">Ksh {rel.price}</p>
+                  <p className="text-green-600 font-medium inconsolata-font text-lg">Ksh {rel.price}</p>
 
                   <Link
                     to={`/product/${rel._id}`}
-                    className="mt-4 inline-block text-pink-600 hover:text-pink-700 transition-all font-semibold"
+                    className=" inline-block text-pink-600 hover:text-pink-700 transition-all font-bold  inconsolata-font"
                   >
                     View Product
                   </Link>

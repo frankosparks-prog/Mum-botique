@@ -111,7 +111,7 @@ import Footer from "./Footer";
 import { Link } from "react-router-dom";
 import CircularProgress from "@mui/material/CircularProgress"; // ✅ Import Spinner
 import "../index.css"; // ✅ Import global styles
-import collection from "../Assets/collection2.jpg";
+import collection from "../Assets/collection6.jpg";
 
 const SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
@@ -154,19 +154,19 @@ function Products() {
           backgroundImage: `url(${collection})`, // ✅ Use the imported image
         }}
       >
-        <div className="absolute inset-0 bg-black/40"></div>
-        <h1
+        <div className="absolute inset-0 bg-black/10"></div>
+        {/* <h1
           className="text-white text-4xl md:text-5xl font-bold z-10 drop-shadow-lg"
           data-aos="fade-up"
         >
           Our Collection
-        </h1>
+        </h1> */}
       </div>
 
       {/* Products Section */}
       <section className="py-14 px-6 max-w-7xl mx-auto">
         <h2
-          className="text-3xl font-semibold text-center mb-10"
+          className="text-3xl text-pink-500 text-center mb-10 inconsolata-font underline "
           data-aos="fade-up"
           data-aos-delay="200"
         >
@@ -208,12 +208,12 @@ function Products() {
                 />
                 <div className="p-4 text-center">
                   <h3 className="text-lg font-semibold">{product.name}</h3>
-                  <p className="text-green-500 text-md font-medium mt-2">
+                  <p className="text-green-500 text-md font-medium  inconsolata-font text-lg">
                     ksh{product.price}
                   </p>
 
                   <Link to={`/product/${product._id}`}>
-                    <button className="mt-4 bg-pink-500 hover:bg-pink-600 text-white px-5 py-2 rounded-full font-medium transition">
+                    <button className="mt-2 bg-pink-500 hover:bg-pink-600 text-white px-4 py-2 rounded-full font-bold transition inconsolata-font ">
                       View Details
                     </button>
                   </Link>

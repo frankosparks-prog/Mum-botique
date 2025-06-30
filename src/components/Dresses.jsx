@@ -98,6 +98,8 @@ import "aos/dist/aos.css";
 import Footer from "./Footer";
 import { Link } from "react-router-dom";
 import CircularProgress from "@mui/material/CircularProgress";
+import "../index.css"; // Import global styles
+import dress from "../Assets/Dress.jpg"; // Example image, replace with actual dress images
 
 const SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
@@ -136,18 +138,18 @@ function Dresses() {
       <div
         className="relative h-[350px] flex items-center justify-center bg-cover bg-center"
         style={{
-          backgroundImage: "url('https://picsum.photos/800/350?random=6')",
+          backgroundImage: `url(${dress})`, // Use the imported dress image
         }}
       >
-        <div className="absolute inset-0 bg-black/40" />
-        <h1 className="relative z-10 text-white text-4xl md:text-5xl font-bold drop-shadow-lg">
+        <div className="absolute inset-0 bg-black/20" />
+        <h1 className="relative z-10 text-white text-4xl md:text-5xl font-bold drop-shadow-lg inconsolata-font">
           Dresses Collection
         </h1>
       </div>
 
       {/* Products Grid */}
       <section className="py-14 px-6 max-w-7xl mx-auto">
-        <h2 className="text-3xl font-semibold text-center mb-10">
+        <h2 className="text-3xl font-semibold text-center mb-10 underline inconsolata-font">
           Grace in Every Stitch
         </h2>
 
@@ -156,7 +158,7 @@ function Dresses() {
             <CircularProgress size={40} sx={{ color: "#ec4899" }} />
           </div>
         ) : dresses.length === 0 ? (
-          <p className="text-center text-gray-600 bg-pink-100 px-6 py-4 rounded-lg border border-pink-300">
+          <p className="text-center text-gray-600 bg-pink-100 px-6 py-4 rounded-lg border border-pink-300 underline inconsolata-font">
             No dresses found.
           </p>
         ) : (
@@ -174,11 +176,11 @@ function Dresses() {
                 />
                 <div className="p-4 text-center">
                   <h3 className="text-lg font-semibold">{dress.name}</h3>
-                  <p className="text-green-500 text-md font-medium mt-2">
+                  <p className="text-green-500 text-lg font-medium inconsolata-font">
                     ksh{dress.price}
                   </p>
                   <Link to={`/product/${dress._id}`}>
-                    <button className="mt-4 bg-pink-500 hover:bg-pink-600 text-white px-5 py-2 rounded-full font-medium transition">
+                    <button className=" bg-pink-500 hover:bg-pink-600 text-white px-4 py-2 rounded-full font-bold transition  inconsolata-font">
                       View Details
                     </button>
                   </Link>

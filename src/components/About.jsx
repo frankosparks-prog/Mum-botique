@@ -31,15 +31,15 @@ function About() {
         </div>
 
         {/* Our Story */}
-        <section className="max-w-6xl mx-auto px-4 sm:px-6 py-14">
+        <section className="max-w-6xl mx-auto px-4 sm:px-6 py-14 ">
           <h2
-            className="text-3xl font-semibold text-center mb-6"
+            className="text-3xl text-center mb-6 font-bold"
             data-aos="fade-up"
           >
             Our Story
           </h2>
           <p
-            className="text-lg text-gray-700 leading-relaxed text-center max-w-3xl mx-auto"
+            className="text-lg text-gray-700 leading-relaxed text-center max-w-3xl mx-auto foontt-regularr"
             data-aos="fade-up"
             data-aos-delay="200"
           >
@@ -52,7 +52,7 @@ function About() {
         </section>
 
         {/* Mission and Values */}
-        <section className="bg-gray-100 py-14 px-4 sm:px-6">
+        <section className="bg-gray-100 py-14 px-4 sm:px-6 ">
           <div
             className="max-w-6xl mx-auto grid md:grid-cols-2 gap-10 items-start"
             data-aos="fade-up"

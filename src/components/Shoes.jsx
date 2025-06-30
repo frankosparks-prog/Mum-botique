@@ -98,6 +98,7 @@ import "aos/dist/aos.css";
 import Footer from "./Footer";
 import { Link } from "react-router-dom";
 import CircularProgress from "@mui/material/CircularProgress";
+import shoe from "../Assets/shoe.jpg"; // Example image, replace with actual product images
 
 const SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
@@ -135,18 +136,18 @@ function Shoes() {
       <div
         className="relative h-[350px] flex items-center justify-center bg-cover bg-center"
         style={{
-          backgroundImage: "url('https://picsum.photos/800/350?random=8')",
+          backgroundImage: `url(${shoe})`, // Replace with your actual image URL
         }}
       >
         <div className="absolute inset-0 bg-black/40" />
-        <h1 className="relative z-10 text-white text-4xl md:text-5xl font-bold drop-shadow-lg">
+        <h1 className="relative z-10 text-white text-4xl md:text-5xl font-bold drop-shadow-lg inconsolata-font">
           Step Into Style
         </h1>
       </div>
 
       {/* Products Section */}
       <section className="py-14 px-6 max-w-7xl mx-auto">
-        <h2 className="text-3xl font-semibold text-center mb-10">
+        <h2 className="text-2xl font-semibold text-center mb-10 inconsolata-font underline underline-offset-8">
           Chic Footwear for Every Occasion
         </h2>
 
@@ -177,11 +178,11 @@ function Shoes() {
                 />
                 <div className="p-4 text-center">
                   <h3 className="text-lg font-semibold">{shoe.name}</h3>
-                  <p className="text-green-500 text-md font-medium mt-2">
+                  <p className="text-green-500 text-md font-medium mt-2 inconsolata-font text-lg">
                     ksh{shoe.price}
                   </p>
                   <Link to={`/product/${shoe._id}`}>
-                  <button className="mt-4 bg-pink-500 hover:bg-pink-600 text-white px-5 py-2 rounded-full font-medium transition">
+                  <button className="bg-pink-500 hover:bg-pink-600 text-white px-4 py-2 rounded-full font-medium transition inconsolata-font font-bold">
                     View Details
                   </button>
                   </Link>
