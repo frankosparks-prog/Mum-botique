@@ -1,6 +1,9 @@
 // src/components/Navbar.jsx
 import React, { useState } from "react";
+import { NavLink } from "react-router-dom";
 import { Link } from "react-router-dom";
+import "../index.css"; // Ensure you have Tailwind CSS set up
+
 import {
   HomeIcon,
   FileTextIcon,
@@ -16,15 +19,11 @@ const Navbar = () => {
   const [isSearchOpen, setIsSearchOpen] = useState(false); // NEW
 
   const links = [
-    { path: "/", name: "Home", icon: <HomeIcon size={20} /> },
-    { path: "/about", name: "About", icon: <FileTextIcon size={20} /> },
-    {
-      path: "/products",
-      name: "Products",
-      icon: <ShoppingBagIcon size={20} />,
-    },
-    { path: "/categories", name: "Categories", icon: <TagIcon size={20} /> },
-    { path: "/contact", name: "Contact Us", icon: <PhoneIcon size={20} /> },
+    { path: "/", name: "Home", icon: <HomeIcon size={16} /> },
+    { path: "/about", name: "About", icon: <FileTextIcon size={16} /> },
+    { path: "/products", name: "Products", icon: <ShoppingBagIcon size={16} /> },
+    { path: "/categories", name: "Categories", icon: <TagIcon size={16} /> },
+    { path: "/contact", name: "Contact Us", icon: <PhoneIcon size={16} /> },
   ];
 
   return (
@@ -38,7 +37,7 @@ const Navbar = () => {
             alt="MC Boutique Logo"
             className="h-12 md:h-14 rounded-full border-2 border-white"
           />
-          <span className="text-white font-bold text-2xl md:text-3xl font-serif drop-shadow">
+          <span className="text-white font-bold text-2xl md:text-3xl font-serif drop-shadow fresca-font ">
             MC Boutique
           </span>
         </div>
@@ -59,16 +58,30 @@ const Navbar = () => {
         </button>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center space-x-4">
+        <nav className="hidden md:flex items-center space-x-6  ">
           {links.map((link, idx) => (
-            <Link
-              key={idx}
-              to={link.path}
-              className="flex items-center space-x-2 bg-white px-4 py-2 rounded-full text-black font-semibold border-2 border-pink-800 shadow hover:bg-pink-700 hover:text-blue transition-all"
-            >
-              {link.icon}
-              <span>{link.name}</span>
-            </Link>
+            // <NavLink 
+            //   key={idx}
+            //   to={link.path}
+            //   className={({ isActive }) => `flex items-center space-x-4 bg-white px-4 py-2 rounded-full text-black font-regular  hover:bg-pink-700 hover:text-blue-500 transition-all duration-300`}
+            // >
+            //   {link.icon}
+            //   {<span className="hover:text-green-500 transition-all" >{link.name}</span> }
+            // </NavLink >
+            <NavLink
+  key={idx}
+  to={link.path}
+  className={({ isActive }) =>
+    `flex items-center space-x-2 px-3 py-2 rounded-full font-regular border border-pink-800 shadow transition-all duration-300 text-sm
+     bg-white ${isActive ? "text-green-600 underline" : "text-black no-underline"} 
+     hover:text-green-600 hover:text-green-600 drop-shadow-[0_4px_6px_rgba(219,39,119,0.2)]`
+     
+  }
+>
+  {link.icon}
+  <span>{link.name}</span>
+</NavLink>
+
           ))}
         </nav>
         <button
@@ -108,30 +121,28 @@ const Navbar = () => {
         </div>
 
         {/* Sidebar Links */}
-        <nav className="flex flex-col px-6 py-4 space-y-10">
+        <nav className="flex flex-col px-4 py-4 space-y-8">
           {links.map((link, idx) => (
             <Link
               key={idx}
               to={link.path}
-              className="flex items-center space-x-3 px-4 py-2 bg-pink-50 rounded-full shadow hover:bg-pink-200 hover:scale-105 transition-all duration-300"
+              className="flex items-center space-x-3 px-4 py-2 bg-pink-50 rounded-full shadow hover:bg-pink-200 no-underline hover:scale-105 transition-all duration-300"
               onClick={() => setIsNavOpen(false)}
             >
               <div className="w-6 h-6 flex items-center justify-center text-pink-700">
                 {link.icon}
               </div>
-              <span className="text-black text-base font-medium">
-                {link.name}
-              </span>
+              <span className="text-black text-base font-regular">{link.name}</span>
             </Link>
           ))}
         </nav>
 
         {/* Get Started CTA */}
-        <div className="absolute  w-full flex justify-center">
+        <div className="absolute  w-full flex justify-center align-center ">
           <Link
             to="/categories"
             onClick={() => setIsNavOpen(false)}
-            className="bg-pink-600 hover:bg-pink-700 text-white font-semibold px-6 py-3 mb-8 rounded-full shadow-md transition-all"
+            className="bg-pink-600 hover:bg-pink-700  text-white font-bold px-4 py-2 mt-2 rounded-xl shadow-md  no-underline transition-all"
           >
             Get Started 🚀
           </Link>

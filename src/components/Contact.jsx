@@ -3,6 +3,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import { FaWhatsapp } from "react-icons/fa";
 import Footer from "./Footer";
+import "../index.css"; // Import global styles
 
 const SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
@@ -61,14 +62,14 @@ function Contact() {
         }}
       >
         <div className="absolute inset-0 bg-black/40" />
-        <h1 className="relative z-10 text-white text-4xl md:text-5xl font-bold drop-shadow-lg">
+        <h1 className="relative z-10 text-white text-4xl md:text-5xl font-bold drop-shadow-lg inconsolata-font">
           Contact Us
         </h1>
       </div>
 
       {/* Contact Form */}
       <section className="py-16 px-6 max-w-5xl mx-auto">
-        <h2 className="text-3xl font-semibold text-center mb-10" data-aos="fade-up">
+        <h2 className="text-3xl font-semibold text-center mb-10 inconsolata-font " data-aos="fade-up">
           We'd Love to Hear From You
         </h2>
         <form

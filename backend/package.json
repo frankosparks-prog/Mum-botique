@@ -25,7 +25,12 @@
     "express-mongo-sanitize": "^2.2.0",
     "express-rate-limit": "^7.5.0",
     "helmet": "^8.1.0",
+<<<<<<< HEAD
     "mongoose": "^8.15.1",
+=======
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.16.0",
+>>>>>>> 2cbead7fd6fb483b3e286c247a8769e07ac399ec
     "morgan": "^1.10.0",
     "multer": "^1.4.5-lts.2",
     "multer-storage-cloudinary": "^4.0.0",

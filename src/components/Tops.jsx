@@ -98,7 +98,7 @@ import "aos/dist/aos.css";
 import Footer from "./Footer";
 import { Link } from "react-router-dom";
 import CircularProgress from "@mui/material/CircularProgress";
-import { FaHeart } from "react-icons/fa";
+import "../index.css"; // Import global styles
 
 const SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
@@ -176,14 +176,14 @@ function Tops() {
         }}
       >
         <div className="absolute inset-0 bg-black/40" />
-        <h1 className="relative z-10 text-white text-4xl md:text-5xl font-bold drop-shadow-lg">
+        <h1 className="relative z-10 text-white text-4xl md:text-5xl font-bold drop-shadow-lg inconsolata-font">
           Trendy Tops Collection
         </h1>
       </div>
 
       {/* Tops Grid */}
       <section className="py-14 px-6 max-w-7xl mx-auto">
-        <h2 className="text-3xl font-semibold text-center mb-10">
+        <h2 className="text-3xl font-semibold text-center mb-10 inconsolata-font underline underline-offset-8">
           Fresh Looks. Everyday Comfort.
         </h2>
 
@@ -192,9 +192,7 @@ function Tops() {
             <CircularProgress size={40} sx={{ color: "#ec4899" }} />
           </div>
         ) : tops.length === 0 ? (
-          <p className="text-center text-gray-600 bg-pink-100 px-6 py-4 rounded-lg border border-pink-300">
-            No tops found.
-          </p>
+          <p className="text-center text-gray-600 bg-pink-100 px-6 py-4 rounded-lg border border-pink-300 inconsolata-font">No tops found.</p>
         ) : (
           <div className="grid gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
             {paginatedProducts.map((top) => (
@@ -226,24 +224,14 @@ function Tops() {
 
                 <div className="p-4 text-center">
                   <h3 className="text-lg font-semibold">{top.name}</h3>
-                  <p className="text-green-500 text-md font-medium mt-2">
+                  <p className="text-green-500 text-lg font-medium inconsolata-font">
                     ksh{top.price}
                   </p>
-                  <div className="flex justify-center items-center gap-2 mt-2">
-                    <Link to={`/product/${top._id}`}>
-                      <button className="mt-4 bg-pink-500 hover:bg-pink-600 text-white px-5 py-2 rounded-full font-medium transition">
-                        View Details
-                      </button>
-                    </Link>
-                    <button
-                      onClick={() => handleLike(top._id)}
-                      className="relative flex items-center justify-center gap-1 p-2 rounded-full border-2 transition-all bg-red-100 border-red-500 text-red-500 hover:text-white hover:bg-red-600 mt-4"
-                      title="Like this product"
-                    >
-                      <FaHeart className="text-pink-500" />
-                      <span>{top.likes || 0}</span>
-                    </button>
-                  </div>
+                  <Link to={`/product/${top._id}`}>
+                  <button className=" bg-pink-500 hover:bg-pink-600 text-white px-4 py-2 rounded-full transition inconsolata-font font-bold">
+                    View Details
+                  </button>
+                  </Link>
                 </div>
               </div>
             ))}

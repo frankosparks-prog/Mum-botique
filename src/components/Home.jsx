@@ -150,7 +150,8 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import Footer from "./Footer";
 import VisitorTracker from "./VisitorTracker";
-import { Helmet } from "react-helmet-async";
+import back from  "../Assets/clothing3.png"
+import "../index.css"; // Ensure AOS styles are imported
 
 const SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
@@ -180,66 +181,58 @@ function Home() {
 
   return (
     <>
-      <Helmet>
-        <title>MC Boutique | Classic, Elegant, and Timeless Beauty ✨</title>
-        <meta
-          name="description"
-          content="Shop classic and elegant fashion at MC Boutique — featuring timeless dresses, stylish tops, trousers, shoes, and more. Affordable & Secure!"
-        />
-        <meta
-          property="og:title"
-          content="MC Boutique | Your Style Destination"
-        />
-        <meta
-          property="og:description"
-          content="Discover beautiful, curated fashion at MC Boutique — for every elegant woman."
-        />
-        <meta
-          property="og:image"
-          content="https://mcbotique.site/Beauty-logo.jpg"
-        />
-        <meta property="og:url" content="https://mcbotique.site/" />
-        <link rel="canonical" href="https://mcbotique.site/" />
-      </Helmet>
-
-      <div className="bg-pink-50 min-h-screen flex flex-col justify-center items-center mt-[-1.9rem]">
+       <div className="bg-pink-50 min-h-screen flex flex-col justify-center items-center mt-[-1.9rem]">
         <VisitorTracker /> {/* Visitor Tracker Component */}
         {/* Hero Section */}
-        <section className="flex flex-col items-center justify-center px-4 py-16 md:py-32 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold text-pink-600 mb-4">
-            Welcome to MC Boutique ✨
-          </h1>
-          <p className="text-xl md:text-2xl text-gray-700 mb-8">
-            Explore a collection of classic, elegant, and timeless beauty
-            products
-          </p>
-          <div className="flex space-x-6">
-            <Link
-              to="/products"
-              className="bg-pink-600 text-white font-semibold py-3 px-8 rounded-full shadow-md transition-all duration-300 transform hover:scale-105"
-            >
-              Shop Now
-            </Link>
-            <Link
-              to="/contact"
-              className="border-2 border-pink-600 hover:bg-pink-600 text-pink-600 hover:text-white font-semibold py-3 px-8 rounded-full shadow-md transition-all duration-300 transform hover:scale-105"
-            >
-              Contact Us
-            </Link>
-          </div>
+        <section className="flex flex-col md:flex-row items-center justify-center px-4 py-12 md:py-18 text-center gap-4 max-w-6xl mx-auto">
+
+      {/* Text Block */}
+      <div className="md:w-3/4">
+        <h1 className="text-4xl md:text-5xl font-bold text-pink-600 mb-3 fresca-font">
+          Welcome to MC Boutique ✨
+        </h1>
+        <p className="text-xl md:text-2xl text-gray-700 mb-8 inconsolata-font">
+          Explore a collection of classic, elegant, and timeless beauty products
+        </p>
+       <div className="flex flex-row items-center justify-center gap-4 ">
+
+          <Link
+            to="/products"
+            className="bg-pink-600 hover:bg-pink-700 text-white font-semibold py-3 px-8 rounded-full shadow-md transition-all duration-300 transform hover:scale-105"
+          >
+            Shop Now
+          </Link>
+          <Link
+            to="/contact"
+            className="border-2 border-pink-600 hover:bg-pink-600 text-pink-600 hover:text-white font-semibold py-3 px-8 rounded-full shadow-md transition-all duration-300 transform hover:scale-105"
+          >
+            Contact Us
+          </Link>
+        </div>
+      </div>
+
+      {/* Image Block */}
+      <div className="md:w-1/2">
+        <img
+          src={back}
+          alt="Hero"
+          className="w-full max-w-md mx-auto rounded-xl "
+        />
+      </div>
         </section>
+
         {/* Featured Products Section */}
-        <section className="w-full px-6 py-16 bg-white">
+        <section className="w-full px-6 py-8 bg-white">
           <div className="max-w-7xl mx-auto text-center">
-            <h2 className="text-3xl font-bold text-pink-600 mb-8">
+            <h2 className="text-3xl font-bold text-pink-600 mb-8 inconsolata-font underline">
               Featured Products
             </h2>
             {featuredProducts.length === 0 ? (
-              <p className="text-gray-600 bg-pink-100 border border-pink-300 rounded-lg px-6 py-4 text-lg font-medium shadow-sm inline-block">
+              <p className="text-gray-600 bg-pink-100 border border-pink-300 rounded-lg px-6 py-4 text-lg font-medium shadow-sm inline-block inconsolata-font">
                 No featured products available.
               </p>
             ) : (
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 ">
                 {featuredProducts.map((product) => (
                   <div
                     key={product._id}
@@ -253,20 +246,19 @@ function Home() {
                           "https://via.placeholder.com/400x250"
                         }
                         alt={product.name}
-                        className="w-full hover:opacity-90 transition object-contain"
-                        loading="lazy"
+                        className="w-full h-56 object-cover hover:opacity-90 transition font-semibold inconsolata-font"
                       />
                     </Link>
-                    <div className="p-4">
-                      <h3 className="text-xl font-semibold text-gray-800">
+                    <div className="p-4 flex flex-col items-center">
+                      <h3 className="text-xl font-regular text-gray-800">
                         {product.name}
                       </h3>
-                      <p className="text-pink-600 font-semibold mt-2">
+                      <p className="text-green-500 font-semibold inconsolata-font">
                         Ksh {product.price.toFixed(2)}
                       </p>
                       <Link
                         to={`/product/${product._id}`}
-                        className="mt-4 inline-block text-pink-600 hover:text-pink-700 transition-all"
+                        className="mt-2 inline-block text-pink-500 hover:text-pink-700 transition-all font-bold inconsolata-font"
                       >
                         View Product
                       </Link>
